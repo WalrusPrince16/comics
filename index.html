@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="description" content="The Official Volcel Comics Webpage | Featuring Based Content from CG & Doffy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Icons & Animations -->
+    <script src="https://kit.fontawesome.com/7d32c0b1df.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+
+    <!-- Tailwind CSS -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="output.css">
+
+    <!-- JS -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <!-- JS Modules -->
+    <script type="module" src="./js/stories.js"></script>
+    <script type='module' src="./js/data.js"></script>
+    <!-- <script type='module' src="./js/app.js"></script> -->
+    <script type='module' src="./js/index.js"></script>
+
+    <!-- Title -->
+    <title>VC Comics</title>
+</head>
+
+<body>
+    <div id="container" class="mx-auto sm:px-8 sm:w-full md:w-4/5">
+        <!-- NAV -->
+        <header class="fixed top-0 left-0 flex items-center justify-between w-screen header">
+            <!-- TITLE CONTENT -->
+            <div class="flex flex-col w-1/3 px-2 py-5 border shadow sm:px-3 md:px-10 title__content" id="titleContent">
+                <h1 id="title" class="sm:text-xl md:text-4xl title"></h1>
+                <h2 id="titleSubtext" class="sm:text-xl md:text-2xl title__subtext"></h2>
+            </div>
+
+            <!-- CONTENTS -->
+            <div class="fixed top-0 left-0 flex flex-col w-screen h-screen sm:px-12 md:px-64 nav__box animate__fadeInRightBig"
+                id="nav__box">
+                <div class="flex flex-shrink-0 mt-48 mb-8 overflow-hidden border options sm:text-3xl md:text-4xl">
+                    <button id="creeper" class="w-1/2 creeper on">Creeper</button>
+                    <button id="dof" class="w-1/2 dof">Doflamingo</button>
+                </div>
+                <ul class="pb-16 sm:text-3xl md:text-4xl nav-list" id="nav-list">
+                    <!-- JS -->
+                </ul>
+            </div>
+            <!-- Toggle both menus -->
+            <div class="flex items-center justify-center w-5 h-5 p-10 rounded-full toggle" id="toggle">
+                <i class="far fa-hand-pointer"></i>
+            </div>
+            <!-- Nav -->
+            <div class="flex items-center justify-center w-1/3 p-2 text-4xl border shadow nav" id="nav">
+                BROWSE
+            </div>
+        </header>
+
+        <!-- Heading -->
+
+        <h1 class="flex flex-col items-center justify-center mt-48 heading">
+            <div class="w-full heading__img-box">
+                <img src="./imgs/vc-comics-logo.png" class="h-auto mx-auto heading__img sm:w-full md:w-2/5">
+            </div>
+            <p class="mt-8 text-4xl heading__text">
+                AUTHORS
+            </p>
+        </h1>
+
+        <!-- AUTHORS -->
+
+        <div class="grid gap-10 my-8 sm:grid-cols-1 md:grid-cols-2 authors">
+            <!-- CG -->
+            <div class="flex flex-col w-full p-8 mb-4 border author">
+
+                <div class="flex flex-col items-center flex-shrink-0 author__pic-content">
+                    <img id="creeper-pic" src="./imgs/authors/creeper.png"
+                        class="sm:w-1/2 md:w-2/5 rounded-full authors__pic">
+                    <a href="https://twitter.com/flamingo69Donut?s=20" class="mt-4 text-4xl">
+                        <i class="fa fa-twitter"></i> CG
+                    </a>
+                </div>
+
+                <div class="flex flex-col justify-center w-full pl-6 text-center align-center">
+                    <p class="my-4">CG Adventures</p>
+                    <button id="creeperGoToLastEpisode" class="block mx-auto border sm:w-4/5 md:3/5">Newest Comic</button>
+                    <button id="creeperGoToFirstEpisode" class="block mx-auto mt-4 border sm:w-4/5 md:3/5">First Comic</button>
+                    <p class="my-4">Short Stories</p>
+                    <button id="creeperGoToLatestStory" class="block mx-auto border sm:w-4/5 md:3/5">Latest Story</button>
+                </div>
+
+            </div>
+
+             <!-- Doffy -->
+             <div class="flex flex-col w-full p-8 mb-4 border author">
+
+                <div class="flex flex-col items-center flex-shrink-0 author__pic-content">
+                    <img id="dof-pic" src="./imgs/authors/dof.jpg"
+                        class="sm:w-1/2 md:w-2/5 rounded-full authors__pic">
+                    <a href="https://twitter.com/cg_cult?s=20" class="mt-4 text-4xl">
+                        <i class="fa fa-twitter"></i> Doffy
+                    </a>
+                </div>
+
+                <div class="flex flex-col justify-center w-full pl-6 text-center align-center">
+                    <p class="my-4">Doffy Adventures</p>
+                    <button id="dofGoToLastEpisode" class="block mx-auto border sm:w-4/5 md:3/5">Newest Comic</button>
+                    <button id="dofGoToFirstEpisode" class="block mx-auto mt-4 border sm:w-4/5 md:3/5">First Comic</button>
+                    <p class="my-4">Podcasts</p>
+                    <button class="block mx-auto border sm:w-4/5 md:3/5">
+                        <a href="https://www.youtube.com/channel/UChhJhrnaqtZFEk2rK3MGUFw" target="_blank">Visit Channel</a>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="episode__box" id="episode__box">
+            <!-- JS -->
+        </div>
+
+        <!-- FULL SCREEN -->
+        <div id="fullScreenBox"
+            class="fixed top-0 left-0 flex items-center justify-center w-screen h-screen fullScreen">
+            <!-- JS -->
+        </div>
+
+    </div>
+    <div class="absolute right-0 flex p-8 dopamine">
+        <p>Total Visitors: </p>
+        <a href="https://www.webfreecounter.com/" target="_blank"><img
+                src="https://www.webfreecounter.com/hit.php?id=guackfq&nd=3&style=46" border="0" alt="hit counter"></a>
+    </div>
+</body>
+
+</html>

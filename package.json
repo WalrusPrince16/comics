@@ -1,0 +1,30 @@
+{
+  "name": "comics",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "process": "npx tailwindcss build style.css -o output.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basedComics/basedComics.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/basedComics/basedComics.github.io/issues"
+  },
+  "homepage": "https://github.com/basedComics/basedComics.github.io#readme",
+  "devDependencies": {
+    "stylelint": "^13.6.1",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.1.0"
+  },
+  "dependencies": {
+    "jquery": "^3.5.1",
+    "tailwindcss": "^1.7.3"
+  },
+  "keywords": [],
+  "description": ""
+}
