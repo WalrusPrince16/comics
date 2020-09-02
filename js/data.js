@@ -451,7 +451,7 @@ export default {
         title: "Ep. 59: Attack on Station Square",
     },
     '60a': {
-        slides: 4,
+        slides: 24,
         author: 'dof',
         season: '6a',
         title: "Ep. 60: The Battle of Volcel Frathouse",

@@ -39,7 +39,7 @@ function addEventsListeners() {
     $(".author button").click(function() {
         $([document.documentElement, document.body]).animate({
             scrollTop: $("#episode__box").offset().top
-        }, 1500);
+        }, 800);
     });
 
     $users.on('click', highlightSelection);
@@ -48,7 +48,7 @@ function addEventsListeners() {
 
     $toggleMenus.on('click', () => {
         $toggleMenus.toggleClass('on');
-        $toggleMenus.class().contains('on') ? navState(true, true) : navState(false, false);
+        $toggleMenus.hasClass('on') ? navState(true, true) : navState(false, false);
     });
 
     $pics.click(changeOnPicClick);
@@ -65,11 +65,10 @@ function addEventsListeners() {
 // * Navigation Functions
 
 function navState(titleElem, navElem, navListToggle=false, navTextToggle=false) {
-    console.log(`Called: Move Title: ${titleElem} Move Nav: ${navElem} Toggle Text: ${navTextToggle}`);
     (titleElem) ? $titleContent.addClass('move') : $titleContent.removeClass('move');
     (navElem) ? $nav.addClass('move') : $nav.removeClass('move');
     if (navListToggle) $navList.toggleClass('nav__box--open');
-    if (navTextToggle) window.setTimeout(() => ($nav.text() === "BROWSE") ? $nav.text("BACK") : $nav.text("BROWSE"), 300);
+    if (navTextToggle) window.setTimeout(() => $nav.text() == "BROWSE" ? $nav.text("BACK") : $nav.text("BROWSE"), 300);
 }
 
 function addStory(story, openedFromNav=false) {
@@ -85,11 +84,11 @@ function createContentHeading(season) {
 }
 
 function createEpisodeInNav(episode, media) {
-    let $li = $(/*html*/`<li id="${episode}" class="nav-list__li"></li>`).text(epData[episode].title);
+    let $li = $(/*html*/`<li id="${episode}" class="nav-list__li pl-5 border-b"></li>`).text(epData[episode].title);
     if (media) {
         $li.on('click', () => addStory($li.attr('id'), true));
     } else {
-        $li.on('click', changeEpisode);
+        $li.on('click', () => changeEpisode($li.attr('id')));
     }
     return $li;
 }
@@ -157,29 +156,15 @@ function updateTitleOnScroll() {
 
 // * Next Episode Button
 
-function createNextEpButton() {
-    return $(/*html*/`<button class="next sm:col-span-1 md:col-span-2 text-center w-full p-8 border">Next Episode</button>`);
-}
-
 function calcCurrentSeries(ep) {
-    let currentSeriesLength = 0;
-    let episodeArr;
-
     if (ep.includes('a')) {
-        currentSeriesLength += epData.dofEpsLength;
-        episodeArr = epData.dofEps;
+        return {len: epData.dofEpsLength, arr: epData.dofEps}
     } else {
-        currentSeriesLength += epData.creeperEpsLength;
-        episodeArr = epData.creeperEps;
+        return {len: epData.creeperEpsLength, arr: epData.creeperEps}
     }
-    return {
-        len: currentSeriesLength,
-        arr: episodeArr
-    };
 }
 
 function getNextEpNumber(ep, arr, length) {
-    // Get the next Episode's ID
     let indexOfCurrentEp = arr.indexOf(ep);
     if (indexOfCurrentEp <= length) return arr[indexOfCurrentEp + 1];
 }
@@ -189,35 +174,21 @@ function appendEp(e) {
     this.parentElement.removeChild(this);
 }
 
-function createLastEpButton($nextEpButton) {
-    $nextEpButton.text("Browse").on('click', () => navState(true, false, true, true));
-}
-
 function nextEpisode(ep) {
     // Creates the button that will load the next episode
-    ep = ep.toString();
-    let $nextEpButton = createNextEpButton();
+    ep = ep.toString(); // ? sometimes a number is passed (1)
+    
+    let $nextEpButton = $(/*html*/`<button class="next sm:col-span-1 md:col-span-2 text-center w-full p-8 border">Next Episode</button>`);
     let currentSeriesData = calcCurrentSeries(ep);
     let lastEpisodeButton = (currentSeriesData.arr.indexOf(ep) + 1 === currentSeriesData.len) ? true : false;
 
     if (lastEpisodeButton) {
-        createLastEpButton($nextEpButton);
+        $nextEpButton.text("Browse").on('click', () => navState(true, false, true, true));
     } else {
-        $nextEpButton.attr("id", getNextEpNumber(ep, currentSeriesData.arr, currentSeriesData.len)); 
-        $nextEpButton.on('click', appendEp);
+        $nextEpButton.attr("id", getNextEpNumber(ep, currentSeriesData.arr, currentSeriesData.len)).on('click', appendEp);
     };
     
     $(".episode:last-child").append($nextEpButton)
-}
-
-// * Full Screen Function
-
-function fullScreen(e) {
-    $("#fullScreenBox").html(`<img class="w-4/5 h-4/5 border" src="${e.target.src}"><div id="close" class="top-0 right-0 p-4 text-5xl absolute"><i class="fas fa-times"></i></div>`)
-        .toggleClass('on')
-        .on('click', () => {
-            $("#fullScreenBox").html("").removeClass('on');
-        });
 }
 
 // * Episode Functions
@@ -228,37 +199,35 @@ function initChangeEpisode(firstLoad, append) {
     if (!append) $episodeBox.html("");
 }
 
-function createEpisodeDiv(id) {
-    return $(`<div id="${id}" class="episode grid sm:grid-cols-1 md:grid-cols-2 gap-10">`);
-}
-
-function createEpisodeSlide(ep, i) {
-    return $(/*html*/
-        `<div class="slide border rounded-xl">
-            <img src="./imgs/ep${ep}/slide${i}.PNG" class="slide__img w-full h-auto"/>
-        </div>`).on('click', fullScreen);
-}
-
-function addSlideToDOM(episode, ep) {
-    $episodeBox.append(episode);
-    nextEpisode(ep);
-}
-
-function changeEpisode(e, firstLoad = false, append = false) {
+function changeEpisode(e, firstLoad=false, append=false) {
     initChangeEpisode(firstLoad, append);
     let ep = (e.target) ? e.target.id : e;
-    let $episode = createEpisodeDiv(ep);
+    let $episode = $(`<div id="${ep}" class="episode grid sm:grid-cols-1 md:grid-cols-2 gap-10 mb-10">`);
 
     if (epData[ep].slides === 3) $episode.addClass('odd');
 
     for (let i = 1; i <= epData[ep].slides; i++) {
-        let $slide = createEpisodeSlide(ep, i);
+        let $slide = $(/*html*/`<div class="slide border rounded-xl"><img src="./imgs/ep${ep}/slide${i}.PNG" class="slide__img w-full h-auto"/></div>`).on('click', fullScreen);
         $episode.append($slide);
     }
 
-    addSlideToDOM($episode, ep);
+    $episodeBox.append($episode);
+    nextEpisode(ep);
+}
+
+// * Full Screen Function
+
+function fullScreen(e) {
+    $("#fullScreenBox")
+        .html(`<img class="transform sm:scale-100 md:scale-150 border" src="${e.target.src}"><div id="close" class="top-0 right-0 p-4 text-5xl absolute"><i class="fas fa-times"></i></div>`)
+        .toggleClass('on')
+        .on('click', () => {
+            $("#fullScreenBox").html("").removeClass('on');
+        });
 }
 
 // * Init
 
-init();
+$(document).ready(function(){
+    init();
+});

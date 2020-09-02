@@ -22379,6 +22379,7 @@ html {
   height: 100%;
   overflow-y: scroll;
   transition: all .3s;
+  z-index: 100;
 }
 
 .nav__box--open {
@@ -22392,7 +22393,6 @@ html {
 .nav {
   background-color: var(--cool-red);
   align-self: stretch;
-  z-index: 1;
   border-top: none;
   transition: all .3s;
 }
@@ -22400,6 +22400,7 @@ html {
 .nav {
   border-bottom-left-radius: 1.5rem;
   border-right: none;
+  z-index: 200;
 }
 
 .title__content {
@@ -22421,12 +22422,15 @@ html {
   color: var(--cool-red);
   border: 3px solid var(--cool-red);
   transition: all .3s;
+  z-index: 1;
 }
 
 .toggle.on {
   opacity: .5;
   transform: scale(1.15);
 }
+
+/* Slides */
 
 @media (min-width: 768px) {
   .episode.odd .slide:nth-of-type(3) {
@@ -22435,8 +22439,6 @@ html {
     width: 50%;
   }
 }
-
-/* Slides */
 
 .slide {
   -webkit-animation: fadeInLeft 1s;
