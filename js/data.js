@@ -457,10 +457,83 @@ export default {
         title: "Ep. 60: The Battle of Volcel Frathouse",
     },
 
+    'dofSE7': {
+        author: "dof",
+        seasonNum: '7a',
+        title: "Season 7"
+    },
+
+    '61a': {
+        slides: 4,
+        author: 'dof',
+        season: '7a',
+        title: "Ep. 61: Awaken",
+    },
+    '62a': {
+        slides: 4,
+        author: 'dof',
+        season: '7a',
+        title: "Ep. 62: The Cave of Healing",
+    },
+    '63a': {
+        slides: 4,
+        author: 'dof',
+        season: '7a',
+        title: "Ep. 63: The Mysterious World",
+    },
+    '64a': {
+        slides: 4,
+        author: 'dof',
+        season: '7a',
+        title: "Ep. 64: SEVEN YEARS???",
+    },
+    '65a': {
+        slides: 4,
+        author: 'dof',
+        season: '7a',
+        title: "Ep. 65: TimeSkip Frogbert",
+    },
+    '66a': {
+        slides: 4,
+        author: 'dof',
+        season: '7a',
+        title: "Ep. 66: A Vision?",
+    },
+    '67a': {
+        slides: 4,
+        author: 'dof',
+        season: '7a',
+        title: "Ep. 67: The State of the Mirror Dimension",
+    },
+    '60a': {
+        slides: 4,
+        author: 'dof',
+        season: '7a',
+        title: "Ep. 61: Awaken",
+    },
+    '68a': {
+        slides: 4,
+        author: 'dof',
+        season: '7a',
+        title: "Ep. 68: Training With the Sage",
+    },
+    '69a': {
+        slides: 4,
+        author: 'dof',
+        season: '7a',
+        title: "Ep. 69: Spirit Energy",
+    },
+    '70a': {
+        slides: 4,
+        author: 'dof',
+        season: '7a',
+        title: "Ep. 70: Donquixoute NewFlamingo-Chan",
+    },
+
     // STORIES
 
     'creeperStoriesSE1': {
-        title: "Tales Volume 1",
+        title: "Short Tales",
         author: 'creeper',
         seasonNum: '1s'
     },
@@ -469,6 +542,19 @@ export default {
         author: 'creeper',
         season: "1s",
         title: "Tale 1: But like...",
+        textContent: stories.butLike,
+    },
+
+    'creeperStoriesSE2': {
+        title: "CG Tales",
+        author: 'creeper',
+        seasonNum: '2s'
+    },
+
+    'creeper2s': {
+        author: 'creeper',
+        season: "2s",
+        title: "Chapter One: Alone",
         textContent: stories.butLike,
     },
 
